@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "35292780323",
+    "firebase_url": "https://gauth-hello.firebaseio.com",
+    "project_id": "gauth-hello",
+    "storage_bucket": "gauth-hello.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35292780323:android:8ca22684801cd9a4609e96",
+        "android_client_info": {
+          "package_name": "ru.gc986.gauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35292780323-v29u4oqsmqc6csvc68748rg87lc7c3a4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.gc986.gauth",
+            "certificate_hash": "fa60413771fde922fbe55de4685b74c5bda8d684"
+          }
+        },
+        {
+          "client_id": "35292780323-roeqf5g9ctabc07petgnosudeugkjagt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALlE7BCY-dgRrRrh7TYzZ6kCQ2kXZxs0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35292780323-roeqf5g9ctabc07petgnosudeugkjagt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
