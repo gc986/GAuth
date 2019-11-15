@@ -1,10 +1,11 @@
 package ru.gc986.gauth.v.common
 
+import android.app.Activity
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 
-class Dialogs (val context: Context) {
+class Dialogs (val context: Activity) {
 
     private fun getString(@StringRes resId: Int) = context.getString(resId)
 

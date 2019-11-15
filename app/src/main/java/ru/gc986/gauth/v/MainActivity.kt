@@ -17,27 +17,26 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.nav_header_main.*
 import ru.gc986.dataprovider.net.ImageDownloader
 import ru.gc986.gauth.R
+import ru.gc986.gauth.p.main.MainPres
+import ru.gc986.gauth.p.main.MainView
 import ru.gc986.gauth.v.auth.GoogleAuth
 import ru.gc986.gauth.v.common.Dialogs
+import ru.gc986.gauth.v.common.activity.CommonActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : CommonActivity<MainPres>(), MainView {
+
+    override fun getLayoutId(): Int = R.layout.activity_main
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun initView() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
@@ -68,20 +67,21 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GoogleAuth.RC_SIGN_IN) {
-            val response = IdpResponse.fromResultIntent(data)
 
-            if (resultCode == Activity.RESULT_OK) {
-                val user = FirebaseAuth.getInstance().currentUser
-                val helloUser = getString(R.string.hello_user,user?.displayName)
-                tvUserName.text = helloUser
-
-                ImageDownloader(this).loadRoundImage(FirebaseAuth.getInstance().currentUser?.photoUrl, ivIco)
-            } else {
+            if (resultCode == Activity.RESULT_OK)
+                showGAuthUserInfo(FirebaseAuth.getInstance().currentUser)
+            else
                 Dialogs(this).showTitle(R.string.google_authorization_error){
                     finish()
                 }
-            }
         }
+    }
+
+    private fun showGAuthUserInfo(user: FirebaseUser?){
+        val helloUser = getString(R.string.hello_user,user?.displayName)
+        tvUserName.text = helloUser
+
+        ImageDownloader(this).loadRoundImage(FirebaseAuth.getInstance().currentUser?.photoUrl, ivIco)
     }
 
 

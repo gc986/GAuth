@@ -49,6 +49,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 
+    // rx
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+
     // dagger
     implementation 'com.google.dagger:dagger:2.12'
     compileOnly 'javax.annotation:jsr250-api:1.0'
@@ -61,6 +66,10 @@ dependencies {
 
     // Logs
     implementation 'ru.gc986:logs:0.0.2'
+
+    // butterknife
+    implementation 'com.jakewharton:butterknife:10.2.0'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.0'
 
     implementation project(path: ':dataprovider')
 }
