@@ -1,4 +1,4 @@
-package ru.gc986.gauth
+package ru.gc986.gauth.v
 
 import android.app.Activity
 import android.content.Intent
@@ -19,9 +19,9 @@ import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.nav_header_main.*
 import ru.gc986.dataprovider.net.ImageDownloader
-import ru.gc986.gauth.ui.v.auth.GoogleAuth
-import ru.gc986.gauth.ui.v.common.Dialogs
-import ru.gc986.logs.Logs
+import ru.gc986.gauth.R
+import ru.gc986.gauth.v.auth.GoogleAuth
+import ru.gc986.gauth.v.common.Dialogs
 
 class MainActivity : AppCompatActivity() {
 

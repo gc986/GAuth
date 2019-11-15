@@ -7,37 +7,37 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="ru.gc986.gauth.ui.v.home.HomeFragment"
+        android:name="ru.gc986.gauth.v.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="ru.gc986.gauth.ui.v.gallery.GalleryFragment"
+        android:name="ru.gc986.gauth.v.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="ru.gc986.gauth.ui.v.slideshow.SlideshowFragment"
+        android:name="ru.gc986.gauth.v.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="ru.gc986.gauth.ui.v.tools.ToolsFragment"
+        android:name="ru.gc986.gauth.v.tools.ToolsFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
 
     <fragment
         android:id="@+id/nav_share"
-        android:name="ru.gc986.gauth.ui.v.share.ShareFragment"
+        android:name="ru.gc986.gauth.v.share.ShareFragment"
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share" />
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="ru.gc986.gauth.ui.v.send.SendFragment"
+        android:name="ru.gc986.gauth.v.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
 </navigation>

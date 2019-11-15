@@ -1,4 +1,4 @@
-package ru.gc986.gauth.ui.v.auth
+package ru.gc986.gauth.v.auth
 
 import android.app.Activity
 import com.firebase.ui.auth.AuthUI

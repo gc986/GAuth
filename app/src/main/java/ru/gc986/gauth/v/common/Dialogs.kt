@@ -1,4 +1,4 @@
-package ru.gc986.gauth.ui.v.common
+package ru.gc986.gauth.v.common
 
 import android.content.Context
 import androidx.annotation.StringRes
