@@ -14,6 +14,8 @@ class GAuthApplication: Application() {
         lateinit var instance: GAuthApplication
         internal lateinit var diData: DIData
         internal lateinit var diPres: DIPres
+
+        var showDebugInfo = true
     }
 
     init {

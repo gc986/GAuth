@@ -6,7 +6,7 @@ import ru.gc986.dataprovider.sharPref.SharedPreferencesHelperImpl
 import ru.gc986.logs.Logs
 import ru.gc986.models.Consts.Companion.MAINSERVER
 
-class BaseRequest(context: Context, showDebugInfo: Boolean) {
+open class BaseRequest(context: Context, showDebugInfo: Boolean) {
 
     private val baseNetConstructor: BaseNetConstructor = BaseNetConstructor(showDebugInfo)
     private var mainServer: String? = null
