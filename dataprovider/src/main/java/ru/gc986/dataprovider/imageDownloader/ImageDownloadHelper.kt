@@ -1,4 +1,4 @@
-package ru.gc986.dataprovider.net
+package ru.gc986.dataprovider.imageDownloader
 
 import android.content.Context
 import android.net.Uri

@@ -15,7 +15,7 @@ import butterknife.ButterKnife
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.nav_header_main.*
-import ru.gc986.dataprovider.net.ImageDownloadHelper
+import ru.gc986.dataprovider.imageDownloader.ImageDownloadHelper
 import ru.gc986.gauth.GAuthApplication
 import ru.gc986.gauth.R
 import ru.gc986.gauth.p.main.MainPres
@@ -23,6 +23,7 @@ import ru.gc986.gauth.p.main.MainView
 import ru.gc986.gauth.v.auth.GoogleAuth
 import ru.gc986.gauth.v.common.Dialogs
 import ru.gc986.gauth.v.common.activity.CommonActivity
+import ru.gc986.models.Consts.Companion.ACTIVITY_ID_GOOGLE_SIGN_IN
 
 class MainActivity : CommonActivity<MainPres>(), MainView {
 
@@ -69,8 +70,7 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GoogleAuth.RC_SIGN_IN) {
-
+        if (requestCode == ACTIVITY_ID_GOOGLE_SIGN_IN) {
             if (resultCode == Activity.RESULT_OK)
                 showGAuthUserInfo(FirebaseAuth.getInstance().currentUser)
             else
@@ -81,7 +81,8 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
     private fun showGAuthUserInfo(user: FirebaseUser?){
         val helloUser = getString(R.string.hello_user,user?.displayName)
         tvUserName.text = helloUser
-        ImageDownloadHelper(this).loadRoundImage(user?.photoUrl, ivIco)
+        ImageDownloadHelper(this)
+            .loadRoundImage(user?.photoUrl, ivIco)
     }
 
 

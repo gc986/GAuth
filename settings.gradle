@@ -1,2 +1,2 @@
-include ':app', ':dataprovider'
+include ':app', ':dataprovider', ':models'
 rootProject.name='GAuth'

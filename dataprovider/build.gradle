@@ -53,4 +53,6 @@ dependencies {
 
     // Logs
     implementation 'ru.gc986:logs:0.0.2'
+
+    implementation project(path: ':models')
 }

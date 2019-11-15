@@ -2,12 +2,9 @@ package ru.gc986.gauth.v.auth
 
 import android.app.Activity
 import com.firebase.ui.auth.AuthUI
+import ru.gc986.models.Consts.Companion.ACTIVITY_ID_GOOGLE_SIGN_IN
 
 class GoogleAuth {
-
-    companion object{
-        val RC_SIGN_IN = 1000
-    }
 
     fun startAuth(activity: Activity){
         val providers = arrayListOf(
@@ -20,7 +17,7 @@ class GoogleAuth {
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
                 .build(),
-            RC_SIGN_IN)
+            ACTIVITY_ID_GOOGLE_SIGN_IN)
     }
 
 }

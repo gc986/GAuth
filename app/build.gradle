@@ -72,6 +72,8 @@ dependencies {
     kapt 'com.jakewharton:butterknife-compiler:10.2.0'
 
     implementation project(path: ':dataprovider')
+    implementation project(path: ':models')
+
 }
 
 apply plugin: 'com.google.gms.google-services'
