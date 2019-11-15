@@ -11,7 +11,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.view.View
 import butterknife.ButterKnife
+import butterknife.OnClick
+import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -47,7 +50,8 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home
+                R.id.nav_home,
+                R.id.nav_logout
             ), drawerLayout
         )
 
@@ -67,6 +71,15 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+//
+//    @OnClick(R.id.nav_logout)
+//    fun clickNavLogout(view: View){
+//        AuthUI.getInstance()
+//            .signOut(this)
+//            .addOnCompleteListener {
+//                view.visibility = View.INVISIBLE
+//            }
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
