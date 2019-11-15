@@ -2,9 +2,6 @@ package ru.gc986.gauth.v
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -12,14 +9,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
-import com.firebase.ui.auth.IdpResponse
+import butterknife.ButterKnife
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.nav_header_main.*
-import ru.gc986.dataprovider.net.ImageDownloader
+import ru.gc986.dataprovider.net.ImageDownloadHelper
+import ru.gc986.gauth.GAuthApplication
 import ru.gc986.gauth.R
 import ru.gc986.gauth.p.main.MainPres
 import ru.gc986.gauth.p.main.MainView
@@ -32,6 +29,12 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
     override fun getLayoutId(): Int = R.layout.activity_main
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    override fun init() {
+        ButterKnife.bind(this)
+        GAuthApplication.diPres.inject(this)
+        getP().setup(this)
+    }
 
     override fun initView() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -71,17 +74,14 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
             if (resultCode == Activity.RESULT_OK)
                 showGAuthUserInfo(FirebaseAuth.getInstance().currentUser)
             else
-                Dialogs(this).showTitle(R.string.google_authorization_error){
-                    finish()
-                }
+                Dialogs(this).showTitle(R.string.google_authorization_error)
         }
     }
 
     private fun showGAuthUserInfo(user: FirebaseUser?){
         val helloUser = getString(R.string.hello_user,user?.displayName)
         tvUserName.text = helloUser
-
-        ImageDownloader(this).loadRoundImage(FirebaseAuth.getInstance().currentUser?.photoUrl, ivIco)
+        ImageDownloadHelper(this).loadRoundImage(user?.photoUrl, ivIco)
     }
 
 

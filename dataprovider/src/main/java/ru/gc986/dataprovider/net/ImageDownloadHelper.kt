@@ -6,7 +6,7 @@ import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 
-class ImageDownloader(val context: Context) {
+class ImageDownloadHelper(val context: Context) {
 
     fun loadRoundImage(uri: Uri?, imageView: ImageView){
 
