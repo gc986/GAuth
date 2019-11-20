@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -51,18 +52,21 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
-                R.id.nav_logout
+                R.id.nav_user_info
             ), drawerLayout
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        signIn()
+    }
+
+    private fun signIn(){
         GoogleAuth().startAuth(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
@@ -71,33 +75,25 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-//
-//    @OnClick(R.id.nav_logout)
-//    fun clickNavLogout(view: View){
-//        AuthUI.getInstance()
-//            .signOut(this)
-//            .addOnCompleteListener {
-//                view.visibility = View.INVISIBLE
-//            }
-//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ACTIVITY_ID_GOOGLE_SIGN_IN) {
             if (resultCode == Activity.RESULT_OK)
-                showGAuthUserInfo(FirebaseAuth.getInstance().currentUser)
+                showGAuthUserInfo()
             else
-                Dialogs(this).showTitle(R.string.google_authorization_error)
+                Dialogs(this).showTitle(R.string.google_authorization_error){
+                    signIn()
+                }
         }
     }
 
-    private fun showGAuthUserInfo(user: FirebaseUser?){
+    private fun showGAuthUserInfo(){
+        val user = FirebaseAuth.getInstance().currentUser
         val helloUser = getString(R.string.hello_user,user?.displayName)
         tvUserName.text = helloUser
         ImageDownloadHelper(this)
             .loadRoundImage(user?.photoUrl, ivIco)
     }
-
-
 
 }

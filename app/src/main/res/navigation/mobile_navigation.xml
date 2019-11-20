@@ -11,4 +11,10 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/nav_user_info"
+        android:name="ru.gc986.gauth.v.userInfo.UserInfoFragment"
+        android:label="@string/user_info"
+        tools:layout="@layout/fragment_user_info"/>
+
 </navigation>
