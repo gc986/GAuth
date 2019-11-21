@@ -26,14 +26,16 @@ import ru.gc986.gauth.p.main.MainPres
 import ru.gc986.gauth.p.main.MainView
 import ru.gc986.gauth.v.auth.GoogleAuth
 import ru.gc986.gauth.v.common.Dialogs
+import ru.gc986.gauth.v.common.OnAuthorized
 import ru.gc986.gauth.v.common.activity.CommonActivity
 import ru.gc986.models.Consts.Companion.ACTIVITY_ID_GOOGLE_SIGN_IN
 
 class MainActivity : CommonActivity<MainPres>(), MainView {
 
-    override fun getLayoutId(): Int = R.layout.activity_main
-
     private lateinit var appBarConfiguration: AppBarConfiguration
+    var onAuthorized:OnAuthorized? = null
+
+    override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun init() {
         ButterKnife.bind(this)
@@ -79,9 +81,10 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ACTIVITY_ID_GOOGLE_SIGN_IN) {
-            if (resultCode == Activity.RESULT_OK)
+            if (resultCode == Activity.RESULT_OK) {
                 showGAuthUserInfo()
-            else
+                onAuthorized?.invoke()
+            }else
                 Dialogs(this).showTitle(R.string.google_authorization_error){
                     signIn()
                 }
@@ -94,6 +97,13 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
         tvUserName.text = helloUser
         ImageDownloadHelper(this)
             .loadRoundImage(user?.photoUrl, ivIco)
+    }
+
+    fun userIsLogout(){
+        tvUserName.setText(R.string.hello_user_name)
+        ivIco.setImageResource(R.drawable.fui_ic_anonymous_white_24dp)
+        ivIco.setBackgroundResource(R.drawable.fui_idp_button_background_anonymous)
+        signIn()
     }
 
 }

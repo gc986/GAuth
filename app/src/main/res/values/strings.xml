@@ -16,6 +16,7 @@
     <string name="logout_completed">Logout completed</string>
     <string name="user_info">User Info</string>
     <string name="logout">Logout</string>
+    <string name="hello_user_name">Hello "%UserName"</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
