@@ -68,11 +68,6 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
         GoogleAuth().startAuth(this)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
@@ -85,9 +80,11 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
                 showGAuthUserInfo()
                 onAuthorized?.invoke()
             }else
-                Dialogs(this).showTitle(R.string.google_authorization_error){
+                Dialogs(this).simpleQuest( null, R.string.google_authorization_error,{
                     signIn()
-                }
+                }, {
+                    finish()
+                })
         }
     }
 

@@ -17,19 +17,24 @@ import kotlinx.android.synthetic.main.fragment_user_info.*
 import ru.gc986.dataprovider.imageDownloader.DownloadCallback
 import ru.gc986.dataprovider.imageDownloader.ImageDownloadHelper
 import ru.gc986.gauth.R
+import ru.gc986.gauth.p.userInfo.UserInfoPres
+import ru.gc986.gauth.p.userInfo.UserInfoView
 import ru.gc986.gauth.v.MainActivity
 import ru.gc986.gauth.v.auth.GoogleAuth
 import ru.gc986.gauth.v.common.Dialogs
 import ru.gc986.gauth.v.common.OnAuthorized
+import ru.gc986.gauth.v.common.fragment.CommonFragment
 
 
-class UserInfoFragment : Fragment() {
+class UserInfoFragment : CommonFragment<UserInfoPres>(), UserInfoView {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_user_info, container, false)
-        ButterKnife.bind(this, root)
-        return root
+    override fun init() {
+        view?.let {view ->
+            ButterKnife.bind(this, view)
+        }
     }
+
+    override fun getLayoutId(): Int  = R.layout.fragment_user_info
 
     override fun onResume() {
         super.onResume()
