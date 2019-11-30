@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_search_users_github">Search for users on github</string>
     <string name="menu_user_info">User info</string>
     <string name="menu_settings">Settings</string>
 
@@ -20,4 +20,5 @@
     <string name="params_for_dialog_not_set">Params for dialog not set</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_name_github_user">Enter name of GitHub user for search</string>
 </resources>

@@ -16,7 +16,7 @@ open class BaseRequest(context: Context, showDebugInfo: Boolean) {
     protected val bnc: Requests
         get() = baseNetConstructor.create(getMainServer(), Requests::class.java)
 
-    fun setMainServer(url: String) {
+    open fun setMainServer(url: String) {
         mainServer = url
         sharedPreferencesHelperImpl.putSPString(MAINSERVER, url)
             .subscribe {}
