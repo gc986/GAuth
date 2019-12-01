@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 abstract class CommonPresImpl<T : CommonView> : CommonPres<T> {
 
-    private var view: T? = null
+    private lateinit var view: T
     protected val unsubscribe = CompositeDisposable()
     @Inject lateinit var dataCenter: DataCenter
 
@@ -17,6 +17,8 @@ abstract class CommonPresImpl<T : CommonView> : CommonPres<T> {
         this.view = view
         init()
     }
+
+    protected fun getV() = view
 
     override fun onDestroy() {
         unsubscribe.dispose()

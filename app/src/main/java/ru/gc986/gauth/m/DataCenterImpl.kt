@@ -21,10 +21,10 @@ class DataCenterImpl(private val context: Context): DataCenter {
             "$mainServer/"
         else
             mainServer
-        mainServerUrl = fullMainServerUrl
-        requests?.setMainServer(fullMainServerUrl)
 
         getSharedPref().putSPString(Consts.SERVERADDRESS, fullMainServerUrl).subscribe {}
+        mainServerUrl = fullMainServerUrl
+        requests?.setMainServer(fullMainServerUrl)
     }
 
     private fun getMainServerUrl(): String = mainServerUrl?.let { it } ?: let {

@@ -57,7 +57,7 @@ class UserInfoFragment : CommonFragment<UserInfoPres>(), UserInfoView {
     fun logout(){
         context?.let { context ->
             GoogleAuth().logout(context){
-                Dialogs(activity as Activity).showTitle(R.string.logout_completed){
+                dialogs.showTitle(R.string.logout_completed){
                     clearUserInfo()
                     (activity as MainActivity).userIsLogout()
                 }

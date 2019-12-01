@@ -9,6 +9,10 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 class ImageDownloadHelper(val context: Context) {
 
     fun loadRoundImage(uri: Uri?, imageView: ImageView, callback: DownloadCallback? = null){
+        loadRoundImage(uri.toString(), imageView, callback)
+    }
+
+    fun loadRoundImage(uri: String?, imageView: ImageView, callback: DownloadCallback? = null){
 
         Picasso.with(context)
             .load(uri?.toString())

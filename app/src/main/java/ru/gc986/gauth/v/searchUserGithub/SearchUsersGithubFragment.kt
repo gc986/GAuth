@@ -1,21 +1,22 @@
 package ru.gc986.gauth.v.searchUserGithub
 
-import android.app.Dialog
+import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
-import butterknife.OnTextChanged
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_search_users_github.*
 import ru.gc986.gauth.R
-import ru.gc986.gauth.p.home.HomePres
-import ru.gc986.gauth.p.home.HomeView
-import ru.gc986.gauth.v.common.Dialogs
+import ru.gc986.gauth.p.searchUserGithub.SearchUserGithubPres
+import ru.gc986.gauth.p.searchUserGithub.SearchUserGithubView
 import ru.gc986.gauth.v.common.fragment.CommonFragment
-import ru.gc986.logs.Logs
+import ru.gc986.models.GitUserResult
 import java.util.concurrent.TimeUnit
 
-class SearchUsersGithubFragment : CommonFragment<HomePres>(), HomeView {
+class SearchUsersGithubFragment : CommonFragment<SearchUserGithubPres>(), SearchUserGithubView {
+
+    override var userNameGitHub: String = ""
+    private var adapter: UserAdapter? = null
 
     override fun getLayoutId(): Int  = R.layout.fragment_search_users_github
 
@@ -28,15 +29,29 @@ class SearchUsersGithubFragment : CommonFragment<HomePres>(), HomeView {
     }
 
     private fun initViews(){
+        // enter GitHub user name
         RxTextView.textChanges(etGitUser)
             .debounce(600, TimeUnit.MILLISECONDS)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Logs.i("OnSearch!")
+                userNameGitHub = it.toString()
+                getP().newSearch()
             },{
 
             }).addToUnsubscribe()
+    }
+
+    override fun clearResult() {
+
+    }
+
+    override fun addUsers(users: ArrayList<GitUserResult.GitUser>) {
+        if (adapter==null){
+            context?.let { context ->  adapter = UserAdapter(context, users) }
+            rvUsers.layoutManager = LinearLayoutManager(context)
+            rvUsers.adapter = adapter
+        }
     }
 
 }

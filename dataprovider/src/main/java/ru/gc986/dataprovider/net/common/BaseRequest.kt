@@ -4,7 +4,7 @@ import android.content.Context
 import ru.gc986.dataprovider.net.Requests
 import ru.gc986.dataprovider.sharPref.SharedPreferencesHelperImpl
 import ru.gc986.logs.Logs
-import ru.gc986.models.Consts.Companion.MAINSERVER
+import ru.gc986.models.Consts.Companion.SERVERADDRESS
 
 open class BaseRequest(context: Context, showDebugInfo: Boolean) {
 
@@ -18,13 +18,11 @@ open class BaseRequest(context: Context, showDebugInfo: Boolean) {
 
     open fun setMainServer(url: String) {
         mainServer = url
-        sharedPreferencesHelperImpl.putSPString(MAINSERVER, url)
-            .subscribe {}
     }
 
     fun getMainServer(): String {
         mainServer ?: let {
-            sharedPreferencesHelperImpl.getSPString(MAINSERVER)
+            sharedPreferencesHelperImpl.getSPString(SERVERADDRESS)
                 .subscribe {
                     mainServer = it
                 }
