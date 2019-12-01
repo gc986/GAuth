@@ -54,6 +54,7 @@ abstract class CommonFragment<T : Any> : Fragment(), CommonFragmentView {
     }
 
     override fun showErr(th: Throwable) {
+        th.printStackTrace()
         dialogs.showTitle(R.string.error, th.message)
     }
 

@@ -22,4 +22,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_name_github_user">Enter name of GitHub user for search</string>
     <string name="error">Error</string>
+    <string name="score_">Score:</string>
 </resources>
