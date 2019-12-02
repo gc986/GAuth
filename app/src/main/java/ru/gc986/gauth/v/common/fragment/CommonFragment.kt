@@ -17,7 +17,7 @@ abstract class CommonFragment<T : Any> : Fragment(), CommonFragmentView {
     @Inject
     lateinit var pres: T
     var logs: Logs = Logs()
-    protected val unsubscribe = CompositeDisposable()
+    private val unsubscribe = CompositeDisposable()
     lateinit var dialogs: Dialogs
 
     abstract override fun getLayoutId(): Int

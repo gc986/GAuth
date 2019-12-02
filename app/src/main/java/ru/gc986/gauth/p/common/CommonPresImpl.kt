@@ -8,7 +8,7 @@ import javax.inject.Inject
 abstract class CommonPresImpl<T : CommonView> : CommonPres<T> {
 
     private lateinit var view: T
-    protected val unsubscribe = CompositeDisposable()
+    private val unsubscribe = CompositeDisposable()
     @Inject lateinit var dataCenter: DataCenter
 
     abstract fun init()

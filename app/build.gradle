@@ -18,12 +18,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', "MainServer", '"https://api.github.com/"'
+            buildConfigField 'Boolean', "ShowDebugInfo", 'true'
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', "MainServer", '"https://api.github.com/"'
+            buildConfigField 'Boolean', "ShowDebugInfo", 'false'
         }
     }
 
@@ -80,6 +82,8 @@ dependencies {
     // RxBinding
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
     implementation 'com.jakewharton.rxbinding3:rxbinding-core:3.1.0'
+    // Logs
+    implementation 'ru.gc986:logs:0.0.2'
 
     implementation project(path: ':dataprovider')
     implementation project(path: ':models')

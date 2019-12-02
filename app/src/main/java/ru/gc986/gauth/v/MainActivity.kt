@@ -32,15 +32,15 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
     private lateinit var appBarConfiguration: AppBarConfiguration
     var onAuthorized:OnAuthorized? = null
 
-    lateinit var tvUserName: TextView
-    lateinit var tvEmail: TextView
-    lateinit var ivIco: ImageView
+    private lateinit var tvUserName: TextView
+    private lateinit var tvEmail: TextView
+    private lateinit var ivIco: ImageView
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun init() {
-        ButterKnife.bind(this)
         GAuthApplication.diPres.inject(this)
+        ButterKnife.bind(this)
         getP().setup(this)
     }
 
@@ -66,14 +66,10 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
         tvEmail = navViewHeader.findViewById(R.id.tvEmail)
         ivIco = navViewHeader.findViewById(R.id.ivIco)
 
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user == null)
-            signIn()
-        else
-            showGAuthUserInfo()
+        getP().checkAuth()
     }
 
-    private fun signIn(){
+    override fun signIn(){
         GoogleAuth().startAuth(this)
     }
 
@@ -94,7 +90,7 @@ class MainActivity : CommonActivity<MainPres>(), MainView {
         }
     }
 
-    private fun showGAuthUserInfo(){
+    override fun showGAuthUserInfo(){
         val user = FirebaseAuth.getInstance().currentUser
         val helloUser = getString(R.string.hello_user,user?.displayName)
         tvUserName.text = helloUser

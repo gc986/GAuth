@@ -13,7 +13,8 @@ abstract class CommonActivity<T : Any> : AppCompatActivity(), CommonActivityView
     @Inject
     lateinit var pres: T
 
-    abstract override @LayoutRes fun getLayoutId(): Int
+    @LayoutRes
+    abstract override fun getLayoutId(): Int
 
     private val logs: Logs = Logs()
     private val dialogs: Dialogs = Dialogs(this)
@@ -28,8 +29,8 @@ abstract class CommonActivity<T : Any> : AppCompatActivity(), CommonActivityView
         initView()
     }
 
-    abstract protected fun initView()
-    abstract protected fun init()
+    protected abstract fun initView()
+    protected abstract fun init()
 
     override fun showProgress() {
         dialogs.showProgress()
